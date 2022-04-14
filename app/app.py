@@ -16,12 +16,12 @@ def hello_world():
     else:
         text = request.form['text'] 
         random_string = uuid.uuid4().hex
-        path = "app/static/" + random_string + ".svg"
+        path = "app/static/"+random_string+".svg"
         model=load('app/model.joblib')
         np_arr=floats_string_to_np_arr(text)
         make_picture('app/AgesAndHeights.pkl',model,np_arr,path)
 
-        return render_template('index.html',href=path)
+        return render_template('index.html',href="static/"+random_string+".svg")
 
 def make_picture(training_data_filename,model,new_input_np_array,output_file):
   data=pd.read_pickle(training_data_filename)
